@@ -130,7 +130,8 @@
                 configurable: true,
                 enumerable: true,
                 get: function () {
-                    // We've made every test async, so always return `true`.
+                    // Always return true if we wrapped the test
+                    if (typeof this._wrappedFn === "undefined") return false;
                     return true;
                 },
                 set: function () {
