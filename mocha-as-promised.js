@@ -131,8 +131,7 @@
                 enumerable: true,
                 get: function () {
                     // Always return true if we wrapped the test
-                    if (typeof this._wrappedFn === "undefined") return false;
-                    return true;
+                    return typeof this._wrappedFn === "function";
                 },
                 set: function () {
                     // Ignore Mocha trying to set this; it doesn't know the whole picture.
