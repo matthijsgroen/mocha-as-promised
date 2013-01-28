@@ -99,7 +99,7 @@
                         // within a suite.
                         var retVal = fn.call(this, done);
 
-                        if (isPromise(retVal)) {
+                        if (isPromise(retVal) && (fn.length == 0)) {
                             // If we get a promise back...
                             retVal.then(
                                 function () {

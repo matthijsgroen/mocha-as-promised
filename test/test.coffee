@@ -101,6 +101,21 @@ describe "Mocha's `Test` class, after duck-punching", ->
                     err.should.equal(@err)
                     done()
 
+        describe "that returns a promise", ->
+            beforeEach ->
+                @err = new TypeError("foobar!")
+                @theTest = new Test("", (done) =>
+                  setTimeout(
+                    => done(@err)
+                  , 20)
+                  Q.resolve()
+                )
+
+            it "should call done once", (done) ->
+                @theTest.run (err) =>
+                    err.should.equal(@err)
+                    done()
+
     describe "when printing test details", ->
         beforeEach ->
             @theTest = new Test("", => return "hello")
